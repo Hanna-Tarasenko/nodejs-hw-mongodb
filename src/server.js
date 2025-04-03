@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
-// import { getContacts, getContactbyId } from './services/contacts.js';
-// import { logger } from './middlewares/logger.js';
+
+import { logger } from './middlewares/logger.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { contactsRouter } from './routers/contacts.js';
@@ -12,7 +12,7 @@ export const setupServer = () => {
 
   app.use(cors());
   app.use(express.json());
-  // app.use(logger);
+  app.use(logger);
 
   app.use('/contacts', contactsRouter);
 
