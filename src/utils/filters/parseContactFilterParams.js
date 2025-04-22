@@ -1,7 +1,7 @@
 import { typeList } from '../../constants/contacts.js';
 
-export const parseContactFilterParams = ({ isFavourite, contactType }) => {
-  const parsedType = typeList.includes(contactType) ? contactType : undefined;
+export const parseContactFilterParams = ({ isFavourite, type }) => {
+  const parsedType = typeList.includes(type) ? type : undefined;
   const parsedIsFavourite =
     isFavourite !== undefined ? isFavourite === 'true' : undefined;
   return {
