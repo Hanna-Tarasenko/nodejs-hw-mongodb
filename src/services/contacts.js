@@ -14,6 +14,11 @@ export const getContacts = async ({
   const skip = (page - 1) * perPage;
 
   const contactQuery = ContactCollection.find();
+
+  if (filters.userId) {
+    contactQuery.where('userId').equals(filters.userId);
+  }
+
   if (filters.contactType) {
     contactQuery.where('contactType').equals(filters.contactType);
   }
