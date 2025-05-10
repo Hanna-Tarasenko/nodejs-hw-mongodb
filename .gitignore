@@ -7,5 +7,5 @@
 .idea
 **/temp/**
 **/upload/**
-!src/temp/.gitkeep
-!src/upload/.gitkeep
+!temp/.gitkeep
+!upload/.gitkeep
