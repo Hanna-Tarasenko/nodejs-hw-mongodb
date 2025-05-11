@@ -33,7 +33,6 @@ const contactSchema = new Schema(
 
     photo: {
       type: String,
-      required: false,
     },
   },
   { versionKey: false, timestamps: true },

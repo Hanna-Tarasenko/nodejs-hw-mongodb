@@ -83,19 +83,48 @@ export const upsertContactController = async (req, res) => {
   });
 };
 
-export const patchContactController = async (req, res) => {
+// export const patchContactController = async (req, res) => {
+//   const { id } = req.params;
+//   const { _id: userId } = req.user;
+
+//   let photo = null;
+
+//   if (req.file) {
+//     // photo = await saveFileToLocal(req.file);
+//     // photo = await saveFileToCloudinary(req.file);
+//     photo = await saveFile(req.file);
+//   }
+
+//   const result = await updateContact(id, userId, { ...req.body, photo });
+
+//   if (!result) {
+//     throw createHttpError(404, `Contact with id=${id} not found`);
+//   }
+
+//   res.json({
+//     status: 200,
+//     message: 'Successfully patched a contact!',
+//     data: result.data,
+//   });
+// };
+
+export const patchContactController = async (req, res, next) => {
   const { id } = req.params;
   const { _id: userId } = req.user;
+  const photo = req.file;
 
-  let photo = null;
+  let photoUrl;
 
-  if (req.file) {
-    // photo = await saveFileToLocal(req.file);
-    // photo = await saveFileToCloudinary(req.file);
-    photo = await saveFile(req.file);
+  if (photo) {
+    photoUrl = await saveFile(req.file);
   }
 
-  const result = await updateContact(id, userId, { ...req.body, photo });
+  const updateData = {
+    ...req.body,
+    photo: photoUrl,
+  };
+
+  const result = await updateContact(id, userId, updateData);
 
   if (!result) {
     throw createHttpError(404, `Contact with id=${id} not found`);
@@ -104,7 +133,7 @@ export const patchContactController = async (req, res) => {
   res.json({
     status: 200,
     message: 'Successfully patched a contact!',
-    data: result.data,
+    data: result,
   });
 };
 

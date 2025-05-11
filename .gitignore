@@ -9,3 +9,5 @@
 **/upload/**
 !temp/.gitkeep
 !upload/.gitkeep
+docs/
+redocly.yaml

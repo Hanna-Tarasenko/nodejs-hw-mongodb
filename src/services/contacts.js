@@ -50,22 +50,32 @@ export const getContactbyId = (id, userId) =>
 
 export const addContact = (payload) => ContactCollection.create(payload);
 
+// export const updateContact = async (id, userId, payload, options = {}) => {
+//   const { upsert } = options;
+//   const rawResult = await ContactCollection.findOneAndUpdate(
+//     { _id: id, userId },
+//     payload,
+//     {
+//       upsert,
+//       includeResultMetadata: true,
+//     },
+//   );
+
+//   if (!rawResult || !rawResult.value) return null;
+//   return {
+//     data: rawResult.value,
+//     isNew: Boolean(rawResult.lastErrorObject.upserted),
+//   };
+// };
 export const updateContact = async (id, userId, payload, options = {}) => {
-  const { upsert } = options;
-  const rawResult = await ContactCollection.findOneAndUpdate(
+  const contact = await ContactCollection.findOneAndUpdate(
     { _id: id, userId },
     payload,
     {
-      upsert,
-      includeResultMetadata: true,
+      new: true,
     },
   );
-
-  if (!rawResult || !rawResult.value) return null;
-  return {
-    data: rawResult.value,
-    isNew: Boolean(rawResult.lastErrorObject.upserted),
-  };
+  return contact;
 };
 
 export const deleteContactById = (id, userId) =>
