@@ -36,6 +36,7 @@ parameters:
   - in: query
     name: type
     schema:
+      enum: ['work', 'home', 'personal']
       type: string
       example: 'work'
 responses:
