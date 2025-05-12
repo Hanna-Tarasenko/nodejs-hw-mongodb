@@ -28,3 +28,5 @@ responses:
             message:
               type: string
               example: 'Contact not found'
+  '401':
+    $ref: ../../../components/responses/401.yaml

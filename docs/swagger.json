@@ -21,10 +21,6 @@
     {
       "name": "Contacts",
       "description": "Operations about contacts"
-    },
-    {
-      "name": "Auth",
-      "description": "Auth operations"
     }
   ],
   "paths": {
@@ -432,6 +428,9 @@
               }
             }
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           }
@@ -463,6 +462,9 @@
         "responses": {
           "204": {
             "description": ""
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "404": {
             "description": "Contact not found",
